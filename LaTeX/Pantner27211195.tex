@@ -1,0 +1,47 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage{statprojekt}
+\newcommand{\naslov}{Projektna naloga iz Statistike}
+
+\begin{document}
+
+\renewcommand{\headheight}{20pt}
+
+\maketitle
+\thispagestyle{empty}
+
+\newpage
+
+\section{Kibergrad}
+
+Preučujemo dohodke družin v mestu Kibergrad. Imamo informacije o 43.886 družinah, 
+ki živijo v eni od štirih četrti: v severni četrti stanuje 10149 družin, v
+vzhodni 10.390, v južni 13.457 in v zahodni 9.890. 
+
+\newpage
+
+\section{Lomljivost najlonskih palic}
+Na vzorcu $280$ najlonskih palic preizkušamo njihovo lomljivost. Rezultati 
+preizkusa so prikazani v sledeči tabeli.
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l||l|l|l|l|l|l|}
+        \hline
+        \textbf{št.~lomov} & 0   & 1  & 2  & 3  & 4 & 5 \\ \hline
+        \textbf{št.~palic} & 157 & 69 & 35 & 17 & 1 & 1 \\ \hline
+    \end{tabular}
+\end{table}
+Privzemimo, da je število mest, na katerih se je palica 
+zlomila porazdeljeno binomsko $\Bin(5, p)$ za določen neznan $p$.
+Privzemimo tudi, da so palice med seboj neodvisne.
+
+Pri teh predpostavkah je logaritem verjetja podan z
+\[
+    l(p, x) = \log\prod_{i=1}^n \binom{280}{x_i}p^{x_i}(1-p)^{5-x_i}.
+\]
+S pomočjo programa $\texttt{najlonske\_palice.py}$ numerično izračunamo, da je maksimum 
+dosežen pri približno $p = 0{,}1421438163551369$. To nam predstavlja oceno $p$
+po metodi največjega verjeta.
+
+
+\end{document}

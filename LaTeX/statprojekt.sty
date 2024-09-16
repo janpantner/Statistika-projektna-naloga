@@ -1,0 +1,56 @@
+\NeedsTeXFormat{LaTeX2e}
+
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{lmodern}
+\RequirePackage[slovene]{babel}
+
+\RequirePackage{geometry}
+  \geometry{
+    left=2.5cm,
+    right=2.5cm,
+    top=2.5cm,
+    bottom=3cm
+  }
+
+
+\RequirePackage[shortlabels]{enumitem}
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{mathtools}
+\RequirePackage{graphicx}
+\RequirePackage{subcaption}
+\RequirePackage{float}
+\RequirePackage{fancyhdr}
+\RequirePackage[parfill]{parskip}
+
+\setlist[enumerate]{itemsep=4.0pt plus 2.0pt minus 1.0pt,topsep=4.0pt plus 2.0pt minus 1.0pt}
+\setlist[itemize]{itemsep=4.0pt plus 2.0pt minus 1.0pt,topsep=4.0pt plus 2.0pt minus 1.0pt}
+
+%%%%% Operators
+
+\DeclareMathOperator{\Bin}{Bin}
+
+
+%%%%%
+
+\title{\textbf{{\naslov}}}
+\author{Jan Pantner (\href{mailto:jan.pantner@gmail.com}{jan.pantner@gmail.com})}
+\date{\today}
+
+\fancypagestyle{}{
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{Jan Pantner}
+\fancyhead[R]{\naslov}
+\fancyfoot[C]{\thepage}}
+
+\RequirePackage[unicode]{hyperref}
+\hypersetup{
+    colorlinks,
+    linktoc=all,
+    linkcolor=blue,
+    citecolor=blue,
+    breaklinks=true,
+    urlcolor=blue
+}
