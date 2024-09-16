@@ -97,13 +97,38 @@ Privzemimo, da je število mest, na katerih se je palica
 zlomila porazdeljeno binomsko $\Bin(5, p)$ za določen neznan $p$.
 Privzemimo tudi, da so palice med seboj neodvisne.
 
+%-----------------------  Naloga (a) -----------------------%
+
 Pri teh predpostavkah je logaritem verjetja podan z
 \[
-    l(p, x) = \log\prod_{i=1}^n \binom{280}{x_i}p^{x_i}(1-p)^{5-x_i}.
+    l(p, x) = \log\prod_{i=1}^n \binom{5}{x_i}p^{x_i}(1-p)^{5-x_i}.
 \]
 Izračunamo, da je maksimum 
-dosežen pri približno $p = 0{,}1421438163551369$. Ta vrednost
+dosežen pri približno $\hat p = 0{,}1421438163551369$. Ta vrednost
 nam predstavlja oceno $p$ po metodi največjega verjetja.
 
+%-----------------------  Naloga (b) -----------------------%
 
+Sedaj združimo zadnje tri vrednosti in naredimo posplošeni 
+Pearsonov preizkus hi kvadrat. Preizkušamo ničelno domnevo, da 
+je število mest, na katerih se je palica zlomila porazdeljeno 
+binomsko $\Bin(5, p)$ proti alternativni domeni, da ima število 
+lomov katero drugo porazdelitev.
+
+Pearsonova testna statistika je
+\[
+    X^2 = \sum_{i=0}^{2}\frac{(x_i - nf_i(\hat p))^2}{nf_i(\hat p)},
+\]
+kjer je $x_0 = 157$, $x_1 = 69$, $x_2 = 35$, $x_3 = 19$ in
+\[
+    f_i(\hat p) = \begin{cases}
+        \binom{5}{x_i}\hat p^{x_j}(1-\hat p)^{5-x_i}, &i \in \{0,1,2\} \\
+        \sum_{j=3}^{5} \binom{5}{x_j}\hat p^{x_j}(1-\hat p)^{5-x_j}, &i = 3 
+    \end{cases}.
+\]
+Izračunamo, da je $X^2 > 44$. Iz tabela kvantilov porazdelitve 
+hi kvadrat sledi, da ničelno domnevo zavrnemo tako 
+pri stopnji tveganja $\alpha = 0{,}01$ kot tudi pri $\alpha = 0{,}05$. 
+
+%-----------------------  Naloga (c) -----------------------%
 \end{document}
