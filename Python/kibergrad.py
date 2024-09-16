@@ -16,7 +16,7 @@ E = df[df.cetrt == VZHODNA]
 S = df[df.cetrt == JUŽNA]
 W = df[df.cetrt == ZAHODNA]
 
-#-----------------------  Naloga (a) -----------------------%
+#-----------------------  Naloga (a) -----------------------#
 
 N1 = N.sample(n=n, random_state=random)
 E1 = E.sample(n=n, random_state=random)
@@ -30,7 +30,7 @@ bp1.set_ylabel('Dohodki')
 plt.grid(axis = 'y', color = 'gray', linewidth = 0.4)
 plt.tight_layout()
 
-#-----------------------  Naloga (b) -----------------------%
+#-----------------------  Naloga (b) -----------------------#
 
 N2 = N.sample(n=n, random_state=2)
 N3 = N.sample(n=n, random_state=3)
@@ -49,7 +49,7 @@ plt.tight_layout()
 
 #plt.show()
 
-#-----------------------  Naloga (c) -----------------------%
+#-----------------------  Naloga (c) -----------------------#
 
 pop = len(df.index)
 population = [len(N.index), len(E.index), len(S.index), len(W.index)]
@@ -73,5 +73,5 @@ varW = round(varW)
 print(f'Pojasnjena varianca je {varB}.\nNepojasnjena varianca je {varW}.')
 print(f'Pojasnjeni stadardni odklon je {round(odklonB)}.')
 
-for i in range(4):
-    print(round(means[i]))
+#for i in range(4):
+#    print(round(means[i]))
