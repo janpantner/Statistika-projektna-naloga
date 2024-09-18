@@ -29,6 +29,7 @@ bp1.set_xticklabels(['Severna četrt', 'Vzhodna četrt', 'Južna četrt', 'Zahod
 bp1.set_ylabel('Dohodki')
 plt.grid(axis = 'y', color = 'gray', linewidth = 0.4)
 plt.tight_layout()
+plt.savefig("Latex\\Slike\\vse_cetrti.png")
 
 #-----------------------  Naloga (b) -----------------------#
 
@@ -46,6 +47,7 @@ bp2.set_xticklabels(['1', '2', '3', '4', '5'])
 bp2.set_ylabel('Dohodki')
 plt.grid(axis = 'y', color = 'gray', linewidth = 0.4)
 plt.tight_layout()
+plt.savefig("Latex\\Slike\\sever.png")
 
 #plt.show()
 
