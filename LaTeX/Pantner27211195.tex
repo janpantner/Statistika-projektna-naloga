@@ -104,7 +104,7 @@ Pri teh predpostavkah je logaritem verjetja podan z
     l(p, x) = \log\prod_{i=1}^{280} \binom{5}{x_i}p^{x_i}(1-p)^{5-x_i}.
 \]
 Izračunamo, da je maksimum 
-dosežen pri približno $\hat p = 0{,}1421438163551369$. Ta vrednost
+dosežen pri približno $\hat p = 0{,}14214$. Ta vrednost
 nam predstavlja oceno $p$ po metodi največjega verjetja.
 
 %-----------------------  Naloga (b) -----------------------%
@@ -204,12 +204,26 @@ verjetja enaka
 \[
     \hat \beta_A = (X_A^\top X)^{-1} X^\top Y.
 \]
-Izračunamo, da je to enako \boxed{\texttt{TO DO}}.
+Izračunamo
+\[
+    \beta_A^\top = \begin{bmatrix}
+        10.747 & 0.056 & 0.039 & -10.379
+    \end{bmatrix}.
+\]
+Prva komponenta nam pove, da imamo pozitiven trend, kar se zdi 
+smiselno. Kako dober je model lahko ocenimo s pomočjo slike 
+\ref{png:prvi}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm]{Slike/prvi_model.png}
+    \caption{Prvi model}
+    \label{png:prvi}
+\end{figure}
 
 Alternativno predpostavimo linearni trend in spreminanje temperature za 
 vsak mesec v letu posebej. V tem primeru dobimo matriko
 \[
-X_B = \begin{bmatrix}
+    X_B = \begin{bmatrix}
         1 & 1 & 0 & 0 & \cdots & 0 & 0 \\
         1 & 0 & 1 & 0 & \cdots & 0 & 0 \\
         \vdots & & & & \ddots & & & \\
@@ -222,31 +236,87 @@ X_B = \begin{bmatrix}
         1 & 0 & 0 & 0 & \cdots & 0 & 30 
     \end{bmatrix},
 \]
-ki je velikosti $360 \times 13$.
+ki je velikosti $360 \times 13$. Izračunamo
+\setcounter{MaxMatrixCols}{20}
+\footnotesize
+\[
+    \beta_A^\top = \begin{bmatrix}
+        10.75 & -0.46 & -0.37 & -0.17 & 0.05 & 0.26 & 
+        0.50 & 0.58 & 0.54 & 0.29 & 0.06 & -0.19 & -0.42
+    \end{bmatrix}.
+\]
+\normalsize
+Za model očitno ni preveč dober. To lahko vidimo tudi na sliki 
+\ref{png:drugi}.
 
-% TO DO slikice
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm]{Slike/drugi_model.png}
+    \caption{Drugi model}
+    \label{png:drugi}
+\end{figure}
 
-Pri izbiri boljšega modela si pomagamo z Akaikejevo informacija, 
+Alternativno si lahko pri izbiri boljšega modela pomagamo z Akaikejevo informacija, 
 ki je v primeru linearne regresije in Gaussovega modela enaka
 \[
     \AIC := 2p + n \ln \RSS,
 \]
 kjer je $p$ število parametrov, $n$ število opažanj in $\RSS = \norm{Y - X\hat \beta}$.
 
-Akaikejeva modela prvega modela je enaka \boxed{\texttt{TO DO}},
-drugega pa \boxed{\texttt{TO DO}}. Torej ima model \boxed{\texttt{TO DO}}
-manjšo Akaikejevo informacijo in je primernejši. 
+Akaikejeva modela prvega modela je enaka $1261$,
+drugega pa $1577$. Torej ima model $A$
+manjšo Akaikejevo informacijo in je primernejši, kar se skleda s 
+prejšnjim opažanjem.
 
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=12cm]{Slike/prvi_model.png}
-%     %\caption{}
-% \end{figure}
-% 
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=12cm]{Slike/drugi_model.png}
-%     %\caption{}
-% \end{figure}
+Takšna razlika se verjetno pojavi zaradi avtorjeve napačne interpretacije navodil 
+projektne naloge. Verjetno je mišljeno, da je drugi model določen z matriko
+\[
+    X_C = \begin{bmatrix}
+        1 & 1 & 0 & 0 & \cdots & 0 & 0 \\
+        1 & 0 & 1 & 0 & \cdots & 0 & 0 \\
+        \vdots & & & & \ddots & & & \\
+        1 & 0 & 0 & 0 & \cdots & 0 & 1 \\
+        2 & 1 & 0 & 0 & \cdots & 0 & 0 \\
+        \vdots & & & & \ddots & & & \\
+        2 & 0 & 0 & 0 & \cdots & 0 & 1 \\
+        3 & 1 & 0 & 0 & \cdots & 0 & 0 \\
+        \vdots & & & & \ddots & & & \\
+        30 & 1 & 0 & 0 & \cdots & 0 & 1 
+    \end{bmatrix}.
+\]
+V tem primeru je
+\footnotesize
+\[
+    \beta_A^\top = \begin{bmatrix}
+        0.06 & 0.26 & 2.14 & 6.30 & 10.68 & 15.29 & 
+        19.56 & 21.21 & 20.48 & 15.44 & 10.88 & 5.82 & 0.92
+    \end{bmatrix}
+\]
+\normalsize
+Prva komponenta nam pove, da imamo pozitiven linearen trend, 
+iz ostalih komponent pa je lepo razvidno kako se temperature
+spreminjajo skozi mesece. Res na primer vidimo, da model 
+predvide najnižje temperature pozimi in najvišje poleti.
+
+Akaikejeva infromacija je enaka $1265$. To je malenkost
+več kot Akaikejeva infromacija prvega modela. Da je model 
+kar dober, vidimo tudi na sliki \ref{png:tretji}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm]{Slike/tretji_model.png}
+    \caption{Tretji model}
+    \label{png:tretji}
+\end{figure}
+Kot zanimivost slika \ref{png:cetrti} prikazuje kaj se zgodi, 
+če matriki $X_C$ na začetek dodamo še stolpec enic.
+Nepresenetljivo glede na sliko, je Akaikejeva infromacija tega modela veliko 
+večja od prejšnih, enaka je $2330$.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm]{Slike/cetrti_model.png}
+    \caption{Zelo slab model.}
+    \label{png:cetrti}
+\end{figure}
 
 \end{document}
