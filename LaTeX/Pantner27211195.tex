@@ -101,7 +101,7 @@ Privzemimo tudi, da so palice med seboj neodvisne.
 
 Pri teh predpostavkah je logaritem verjetja podan z
 \[
-    l(p, x) = \log\prod_{i=1}^n \binom{5}{x_i}p^{x_i}(1-p)^{5-x_i}.
+    l(p, x) = \log\prod_{i=1}^{280} \binom{5}{x_i}p^{x_i}(1-p)^{5-x_i}.
 \]
 Izračunamo, da je maksimum 
 dosežen pri približno $\hat p = 0{,}1421438163551369$. Ta vrednost
@@ -122,7 +122,7 @@ Pearsonova testna statistika je
 kjer je $x_0 = 157$, $x_1 = 69$, $x_2 = 35$, $x_3 = 19$ in
 \[
     f_i(\hat p) = \begin{cases}
-        \binom{5}{x_i}\hat p^{x_j}(1-\hat p)^{5-x_i}, &i \in \{0,1,2\} \\
+        \binom{5}{x_i}\hat p^{x_j}(1-\hat p)^{5-x_i}, &i \in \set{0,1,2} \\
         \sum_{j=3}^{5} \binom{5}{x_j}\hat p^{x_j}(1-\hat p)^{5-x_j}, &i = 3 
     \end{cases}.
 \]
@@ -131,4 +131,122 @@ hi kvadrat sledi, da ničelno domnevo zavrnemo tako
 pri stopnji tveganja $\alpha = 0{,}01$ kot tudi pri $\alpha = 0{,}05$. 
 
 %-----------------------  Naloga (c) -----------------------%
+
+Recimo sedaj, da imamo za $i = 1, \dots, 280$ neodvisna opažanja
+$X_i \sim \Bin(m_i, p_i)$, kjer so parametri $m_i$ znani, 
+$p_i$ pa neznani. S pomočjo razmerja verjetih preizkusimo 
+ničelno domnevo, da so vsi parametri $p_i$ enaki, proti 
+alternativni domnevi, da temu ni tako.
+
+Verjetja sta enaka
+\begin{align*}
+    L_1 = \prod_{i=1}^{280} \binom{m_i}{x_i}p_i^{x_i}(1-p_i)^{m_i-x_i} \\
+    L_0 = \prod_{i=1}^{280} \binom{m_i}{x_i}p_0^{x_i}(1-p_0)^{m_i-x_i}   
+\end{align*}
+Torej je razmerje verjetij enako
+\[
+    \Lambda =
+    \frac{\prod_{i=1}^{280} \hat p_i^{x_i}(1-\hat p_i)^{m_i-x_i}}
+    {\prod_{i=1}^{280} \hat p_0^{x_i}(1-\hat p_0)^{m_i-x_i}}
+\]
+Če logaritem verjetja $L_1$ odvajamo po $p_i$ 
+dobimo
+\[
+    \frac{x_i}{p_i} - \frac{x_i-m_i}{1-p_i}.
+\]
+
+
+\boxed{\texttt{TO DO}}
+
+
+\newpage
+
+\section{Spreminjanje temperature v Ljubljani}
+
+V tem razdelku preučejemo spreminanje temperature s časom v Ljubljani s 
+pomočjo podatko izmerjenih mesečno med v letih od $1994$ do $2023$.
+Pomagamo si s programom \texttt{temperature.py}.
+
+Najprej predpostavimo linearni trend in sinusno nihanje s periodo eno leto. 
+To nam da model
+\[
+    y_{l,m} = Ax_l + B\sin(x_m\pi/6 + \delta) + C,
+\]
+oziroma
+\[
+    y_{l,m} = Ax_l + B\sin(x_m\pi/6) + C\cos(x_m\pi/6) + D,
+\]
+kjer je $x_l$ leto meritve, $x_m$ mesec meritve, $y_{l,m}$ pa 
+izmerjena temperatura v tem mesecu tega leta. Alternativno
+\[
+    Y = X_A\beta_A,
+\]
+kjer je $\beta_A^\top = \begin{bmatrix}
+    D & C & B & A
+\end{bmatrix}$ in
+\[
+    X_A = \begin{bmatrix}
+        1 & 1 & 0 & 1 \\
+        1 & 1 & \sin\left(\pi/6\right) & \cos\left(\pi/6\right) \\
+        \vdots & \vdots & \vdots & \vdots \\
+        1 & 1 &  \sin\left(11\pi/6\right) & \cos\left(11\pi/6\right) \\
+        1 & 2 & 0 & 1 \\
+        \vdots & \vdots & \vdots & \vdots \\
+        1 & 2 &  \sin\left(11\pi/6\right) & \cos\left(11\pi/6\right) \\
+        1 & 3 &  0 & 1 \\
+        \vdots & \vdots & \vdots & \vdots \\
+        1 & 30 & \sin\left(11\pi/6\right) & \cos\left(11\pi/6\right)\\
+        \end{bmatrix}.
+\]
+Torej, $X_A$ je matrika velikosti $360 \times 4$. Predpostavimo, da je 
+naš model Gaussov. Tedaj je ocena za $\beta_A$ po metodi največjega 
+verjetja enaka
+\[
+    \hat \beta_A = (X_A^\top X)^{-1} X^\top Y.
+\]
+Izračunamo, da je to enako \boxed{\texttt{TO DO}}.
+
+Alternativno predpostavimo linearni trend in spreminanje temperature za 
+vsak mesec v letu posebej. V tem primeru dobimo matriko
+\[
+X_B = \begin{bmatrix}
+        1 & 1 & 0 & 0 & \cdots & 0 & 0 \\
+        1 & 0 & 1 & 0 & \cdots & 0 & 0 \\
+        \vdots & & & & \ddots & & & \\
+        1 & 0 & 0 & 0 & \cdots & 0 & 1 \\
+        1 & 2 & 0 & 0 & \cdots & 0 & 0 \\
+        \vdots & & & & \ddots & & & \\
+        1 & 0 & 0 & 0 & \cdots & 0 & 2 \\
+        1 & 3 & 0 & 0 & \cdots & 0 & 0 \\
+        \vdots & & & & \ddots & & & \\
+        1 & 0 & 0 & 0 & \cdots & 0 & 30 
+    \end{bmatrix},
+\]
+ki je velikosti $360 \times 13$.
+
+% TO DO slikice
+
+Pri izbiri boljšega modela si pomagamo z Akaikejevo informacija, 
+ki je v primeru linearne regresije in Gaussovega modela enaka
+\[
+    \AIC := 2p + n \ln \RSS,
+\]
+kjer je $p$ število parametrov, $n$ število opažanj in $\RSS = \norm{Y - X\hat \beta}$.
+
+Akaikejeva modela prvega modela je enaka \boxed{\texttt{TO DO}},
+drugega pa \boxed{\texttt{TO DO}}. Torej ima model \boxed{\texttt{TO DO}}
+manjšo Akaikejevo informacijo in je primernejši. 
+
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=12cm]{Slike/prvi_model.png}
+%     %\caption{}
+% \end{figure}
+% 
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=12cm]{Slike/drugi_model.png}
+%     %\caption{}
+% \end{figure}
+
 \end{document}
