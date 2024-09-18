@@ -1,5 +1,7 @@
 import math
 import scipy.optimize
+from scipy.stats import binom
+import scipy
 
 #-----------------------  Naloga (a) -----------------------#
 
@@ -15,6 +17,14 @@ result = scipy.optimize.minimize_scalar(lambda x: -l(x), bounds=[0,1], method='b
 a = result.x
 
 print(f'(a) Ocena za p po metodi največjega verjetja je {a}.')
+
+# Alternativno
+
+data = 157 * [0] + 69 * [1] + 35 * [2] + 17 * [3] + [4, 5]
+
+d = scipy.stats.fit(binom, data, bounds={"n":[5]}).params
+
+print(f'(a) Ocena za p po metodi največjega verjetja je {d.p}.')
 
 #-----------------------  Naloga (b) -----------------------#
 
@@ -32,4 +42,6 @@ print(f'(b) Pearsonova testna statistika je enaka {x2}.')
 #-----------------------  Naloga (c) -----------------------#
 
 
+
 #-----------------------  Naloga (d) -----------------------#
+

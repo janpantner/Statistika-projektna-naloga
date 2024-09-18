@@ -1,4 +1,7 @@
 math
+scipy
 scipy.optimize
+scipy.stats
 pandas
 matplotlib.pyplot
+numpy
