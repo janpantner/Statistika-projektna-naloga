@@ -26,7 +26,7 @@ X_A = np.concatenate((np.ones((n, 1)), months, sin, cos), axis=1)
 beta_A = np.matmul(np.matmul(np.linalg.inv(np.matmul(X_A.T, X_A)), X_A.T), Y)
 
 RSS_A = np.linalg.norm(Y - np.dot(X_A, beta_A))
-AIC_A = round(8 + n*np.log(RSS_A))
+AIC_A = round(2*4 + n*np.log(RSS_A))
 
 f = plt.figure()
 f.set_figwidth(8)
@@ -52,9 +52,8 @@ beta_B = np.matmul(np.matmul(np.linalg.inv(np.matmul(X_B.T, X_B)), X_B.T), Y)
 
 RSS_B = np.linalg.norm(Y - np.dot(X_B, beta_B))
 
-AIC_B = round(26 + n*np.log(RSS_B))
+AIC_B = round(2*13 + n*np.log(RSS_B))
 
-f = plt.figure()
 f.set_figwidth(8)
 f.set_figheight(3)
 plt.plot(np.matmul(X_B, beta_B)[300:], linewidth=1.5, color="red")
@@ -76,14 +75,9 @@ X_C = np.concatenate((months, diag), axis = 1)
 
 beta_C = np.matmul(np.matmul(np.linalg.inv(np.matmul(X_C.T, X_C)), X_C.T), Y)
 
-for i in beta_C:
-    j = str(i[0])
-    print(j[0:6])
-
 RSS_C = np.linalg.norm(Y - np.dot(X_C, beta_C))
-AIC_C = round(26 + n*np.log(RSS_C))
+AIC_C = round(2*13 + n*np.log(RSS_C))
 
-f = plt.figure()
 f.set_figwidth(8)
 f.set_figheight(3)
 plt.plot(np.matmul(X_C, beta_C)[300:], linewidth=1.5, color="blue")
@@ -105,9 +99,8 @@ X_D = np.concatenate((np.ones((n, 1)), np.arange(n).reshape([n, 1]), diag), axis
 beta_D = np.matmul(np.matmul(np.linalg.inv(np.matmul(X_D.T, X_D)), X_D.T), Y)
 
 RSS_D = np.linalg.norm(Y - np.dot(X_D, beta_D))
-AIC_D = round(28 + n*np.log(RSS_D))
+AIC_D = round(2*14 + n*np.log(RSS_D))
 
-f = plt.figure()
 f.set_figwidth(8)
 f.set_figheight(3)
 plt.plot(np.matmul(X_D, beta_D)[300:], linewidth=1.5, color="purple")
@@ -116,8 +109,18 @@ plt.xlabel("Meseci začenši z januarjem 2019")
 plt.ylabel("Temperatura [°C]")
 plt.tight_layout()
 plt.savefig("Latex\\Slike\\cetrti_model.png")
-plt.clf()
+#plt.clf()
 
 #----------------------------------------------------------#
 
 print(f'Akaikejeve informacije so zaporedoma {AIC_A}, {AIC_B}, {AIC_C} in {AIC_D}.')
+
+#----------------------------------------------------------#
+
+p = 13 # dim V -- C
+q = 4 # dim W -- A
+
+F = (RSS_A - RSS_C) * (n-p) / (p-q) / RSS_C
+
+print(f'Testna statistika F je enaka {round(F, 3)}.')
+# fisher(p-q, n-p) = fisher(9, 356)

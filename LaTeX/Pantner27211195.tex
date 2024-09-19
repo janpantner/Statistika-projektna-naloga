@@ -26,8 +26,9 @@ vzhodni $10.390$, v južni $13.457$ in v zahodni $9.890$. Pomagamo si
 s programom \texttt{kibergrad.py}.
 
 Iz vsake četrti vzemimo enostavni slučajni vzorec velikosti $100$. 
-Dohodke lahko primerjamo s pomočjo vzporednih škatel z brki, ki 
-so prikazane na sliki \ref{img:cetrti}.
+Dohodke primerjamo s pomočjo škatel z brki, o katerih je več 
+napisano v \cite[Poglavje~10.6]{rice2007mathematical}.
+Vzporedne škatle z brki so prikazane na sliki \ref{img:cetrti}.
 \begin{figure}[H]
     \centering
     \includegraphics[width=12cm]{Slike/vse_cetrti.png}
@@ -41,7 +42,6 @@ najvišji. Zdi pa se, da so dohodki severne četrti malenkost višji kot dohodki
 južne četrti, pri kateri so vse prej omenjene vrednosti najmanjše. 
 
 Zdi se, da v splošnem četrt ne vpliva močno na velikost dohodka.
-
 
 Sedaj vzemimo še štiri enostavne slučajne vzorce velikosti $100$ 
 iz severne četrti in poglejmo vzporedne škatle z brki za vzorce
@@ -64,8 +64,9 @@ Za konec si poglejmo še varianco dohodka pojasnjeno s četrtmi in preostalo
 populacije $i$-te četrti in $w_i$ velikostni delež $i$-te četrti. Naj bo
 $\mu$ povprečni dogodek in $\sigma^2$ varianca dohodka Kibergrada,
 $\mu_i$ in $\sigma_i^2$ pa zaporedoma povprečni dohodek in varianca 
-dohodka $i$-te četrti. Pojasnjena in nepojasnjena varianca sta zaporedoma 
-določeni s formulama
+dohodka $i$-te četrti. 
+Pojma pojasnjene in nepojasnjene variance sta razložena v 
+\cite{raic}. Zaporedoma sta določena s formulama
 \[
     \sigma^2_B := \sum_{i=1}^{4} w_i(\mu_i - \mu)
     \quad \text{in} \quad
@@ -109,16 +110,17 @@ Pri teh predpostavkah je logaritem verjetja podan z
     l(p, x) = \log\prod_{i=1}^{280} \binom{5}{x_i}p^{x_i}(1-p)^{5-x_i}.
 \]
 Izračunamo, da je maksimum 
-dosežen pri približno $\hat p = 0{,}14214$. Ta vrednost
+dosežen pri $\hat p = 0{,}14214$. Ta vrednost
 nam predstavlja oceno $p$ po metodi največjega verjetja.
 
 %-----------------------  Naloga (b) -----------------------%
 
-Sedaj združimo zadnje tri vrednosti in naredimo posplošeni 
-Pearsonov preizkus hi kvadrat. Preizkušamo ničelno domnevo, da 
+Sedaj združimo zadnje tri vrednosti in preizkusimo ničelno domnevo, da 
 je število mest, na katerih se je palica zlomila porazdeljeno 
 binomsko $\Bin(5, p)$ proti alternativni domeni, da ima število 
 lomov katero drugo porazdelitev.
+To storimo s Pearsonovim preizkusom hi kvadrat, ki je podrobneje
+opisan v \cite[Poglavje~9.5]{rice2007mathematical}.
 
 Pearsonova testna statistika je
 \[
@@ -168,21 +170,23 @@ dobimo
 
 \section{Spreminjanje temperature v Ljubljani}
 
-V tem razdelku preučejemo spreminanje temperature s časom v Ljubljani s 
-pomočjo podatko izmerjenih mesečno med v letih od $1994$ do $2023$.
+V tem razdelku preučujemo spreminanje temperature v Ljubljani s 
+pomočjo podatkov izmerjenih mesečno v letih od $1994$ do $2023$.
 Pomagamo si s programom \texttt{temperature.py}.
 
 Najprej predpostavimo linearni trend in sinusno nihanje s periodo eno leto. 
 To nam da model
 \[
-    y_{l,m} = Ax_l + B\sin(x_m\pi/6 + \delta) + C,
+    y_{l,m} = Ax_l + B\sin(x_m\pi/6 + \delta) + C
 \]
 oziroma
 \[
     y_{l,m} = Ax_l + B\sin(x_m\pi/6) + C\cos(x_m\pi/6) + D,
 \]
 kjer je $x_l$ leto meritve, $x_m$ mesec meritve, $y_{l,m}$ pa 
-izmerjena temperatura v tem mesecu tega leta. Alternativno
+izmerjena temperatura v tem mesecu tega leta. Več o sinusnem 
+modelu v \cite{wiki:Sinusoidal_model}. Alternativno je model 
+dolečen z
 \[
     Y = X_A\beta_A,
 \]
@@ -253,7 +257,6 @@ ki je velikosti $360 \times 13$. Izračunamo
 \normalsize
 Za model očitno ni preveč dober. To lahko vidimo tudi na sliki 
 \ref{png:drugi}.
-
 \begin{figure}[H]
     \centering
     \includegraphics[width=14cm]{Slike/drugi_model.png}
@@ -261,19 +264,6 @@ Za model očitno ni preveč dober. To lahko vidimo tudi na sliki
     drugega modela.}
     \label{png:drugi}
 \end{figure}
-
-Alternativno si lahko pri izbiri boljšega modela pomagamo z Akaikejevo informacija, 
-ki je v primeru linearne regresije in Gaussovega modela enaka
-\[
-    \AIC := 2p + n \ln \RSS,
-\]
-kjer je $p$ število parametrov, $n$ število opažanj in $\RSS = \norm{Y - X\hat \beta}$.
-
-Akaikejeva informacija prvega modela je enaka $1261$,
-drugega pa $1577$. Torej ima model $A$
-manjšo Akaikejevo informacijo in je primernejši, kar se sklada s 
-prejšnjim opažanjem.
-
 Takšna razlika se verjetno pojavi zaradi avtorjeve napačne interpretacije navodil 
 projektne naloge. Verjetno je mišljeno, da je drugi model določen z matriko
 \[
@@ -290,7 +280,7 @@ projektne naloge. Verjetno je mišljeno, da je drugi model določen z matriko
         30 & 1 & 0 & 0 & \cdots & 0 & 1 
     \end{bmatrix}.
 \]
-V tem primeru je
+To je ponovno matrika velikosti $360 \times 13$. V tem primeru je
 \footnotesize
 \[
     \beta_A^\top = \begin{bmatrix}
@@ -303,10 +293,7 @@ Prva komponenta nam pove, da imamo pozitiven linearen trend,
 iz ostalih komponent pa je lepo razvidno kako se temperature
 spreminjajo skozi mesece. Res na primer vidimo, da model 
 predvide najnižje temperature pozimi in najvišje poleti.
-
-Akaikejeva infromacija je enaka $1265$. To je malenkost
-več kot Akaikejeva infromacija prvega modela. Da je model 
-kar dober, vidimo tudi na sliki \ref{png:tretji}.
+Model je prikazan na sliki \ref{png:tretji}.
 \begin{figure}[H]
     \centering
     \includegraphics[width=14cm]{Slike/tretji_model.png}
@@ -314,6 +301,47 @@ kar dober, vidimo tudi na sliki \ref{png:tretji}.
     tretjega modela.}
     \label{png:tretji}
 \end{figure}
+Tretji model je širši od prvega. Preizkusimo model $A$ znotraj 
+modela $C$, torej preizkusimo ničelne domnevo, da velja model $A$, 
+proti alternativni, da velja model $B$ z odvzetim podmodelom $A$.
+To lahko storimo na podlagi statistike
+\[
+    F := \frac{(\RSS_A - \RSS_C)(n-p)}{\RSS_C (p-q)},
+\]
+kjer sta $p$ in $q$ prostorski stopnji modelov $C$ in $A$. 
+Ničelno domnevo zavrnemo, če je 
+\[
+    F \ge F^{-1}_{\fish(p-q,n-p)}(1-\alpha),
+\]
+kjer je $\alpha$ stopnja tveganja. 
+Izpeljava je na voljo v \cite{raic2}. 
+
+V našem primeru je $p = 13$ in $q = 4$. Izračunamo 
+\[
+    F = 1{,}595, \quad
+    F^{-1}_{\fish(9,347)}(1-0{,}05) = 1{,}907 \quad \text{in} \quad
+    F^{-1}_{\fish(9,347)}(1-0{,}01) = 2{,}459.
+\]
+Ničelne domneve torej ne moremo zavrniti.
+% F = (RSS_A - RSS_C) * (n-p) / (p-q) / RSS_C
+
+\subsection*{Določanje optimalnega modela s Akaikejevo informacijo}
+
+Pri izbiri boljšega modela si lahko pomagamo z Akaikejevo informacija, 
+ki je v primeru linearne regresije in Gaussovega modela enaka
+\[
+    \AIC := 2p + n \ln \RSS,
+\]
+kjer je $p$ število parametrov, $n$ število opažanj in $\RSS = \norm{Y - X\hat \beta}$.
+
+Akaikejeva informacija prvega modela je enaka $1261$,
+tretjega pa $1265$. Torej ima model $A$ malenkost
+manjšo Akaikejevo informacijo in je primernejši.
+
+Akaikejeva infromacija drugega modela je enaka $1577$. 
+To se sklada z opažanjem iz slike, da je drugi model bistveno
+slabši od prvega (in tretjega).
+
 Kot zanimivost slika \ref{png:cetrti} prikazuje kaj se zgodi, 
 če matriki $X_C$ na začetek dodamo še stolpec enic.
 Nepresenetljivo, glede na sliko, je Akaikejeva infromacija tega modela veliko 
@@ -331,6 +359,9 @@ večja od prejšnih -- enaka je $2330$.
 \nocite{*}
 \printbibliography
 \addcontentsline{toc}{section}{Literatura}
+
+Kvantili Fisherjeve porazdelitve so bili izračunani s kalkulatorjem Stat Trek
+dostopnim na \url{https://stattrek.com/online-calculator/f-distribution}.
 
 
 \end{document}
