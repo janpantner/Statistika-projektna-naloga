@@ -3,14 +3,19 @@
 \usepackage{statprojekt}
 \newcommand{\naslov}{Projektna naloga iz Statistike}
 
+\addbibresource{stat.bib}
+
 \begin{document}
 
-\renewcommand{\headheight}{20pt}
-
+\author{Jan Pantner \\
+\small Profesor: doc.~dr.~Martin~Raič}
 \date{September 2024}
 \maketitle
 \thispagestyle{empty}
 
+\newpage
+
+\tableofcontents
 \newpage
 
 \section{Kibergrad}
@@ -216,11 +221,11 @@ smiselno. Kako dober je model lahko ocenimo s pomočjo slike
 \begin{figure}[H]
     \centering
     \includegraphics[width=14cm]{Slike/prvi_model.png}
-    \caption{Prvi model}
+    \caption{Siva krivulja označuje izmerjene podatke, zelena pa oceno 
+    prvega modela.}
     \label{png:prvi}
 \end{figure}
-
-Alternativno predpostavimo linearni trend in spreminanje temperature za 
+Alternativno predpostavimo linearni trend temperature za 
 vsak mesec v letu posebej. V tem primeru dobimo matriko
 \[
     X_B = \begin{bmatrix}
@@ -252,7 +257,8 @@ Za model očitno ni preveč dober. To lahko vidimo tudi na sliki
 \begin{figure}[H]
     \centering
     \includegraphics[width=14cm]{Slike/drugi_model.png}
-    \caption{Drugi model}
+    \caption{Siva krivulja označuje izmerjene podatke, rdeča pa oceno 
+    drugega modela.}
     \label{png:drugi}
 \end{figure}
 
@@ -263,9 +269,9 @@ ki je v primeru linearne regresije in Gaussovega modela enaka
 \]
 kjer je $p$ število parametrov, $n$ število opažanj in $\RSS = \norm{Y - X\hat \beta}$.
 
-Akaikejeva modela prvega modela je enaka $1261$,
+Akaikejeva informacija prvega modela je enaka $1261$,
 drugega pa $1577$. Torej ima model $A$
-manjšo Akaikejevo informacijo in je primernejši, kar se skleda s 
+manjšo Akaikejevo informacijo in je primernejši, kar se sklada s 
 prejšnjim opažanjem.
 
 Takšna razlika se verjetno pojavi zaradi avtorjeve napačne interpretacije navodil 
@@ -304,19 +310,27 @@ kar dober, vidimo tudi na sliki \ref{png:tretji}.
 \begin{figure}[H]
     \centering
     \includegraphics[width=14cm]{Slike/tretji_model.png}
-    \caption{Tretji model}
+    \caption{Siva krivulja označuje izmerjene podatke, modra pa oceno 
+    tretjega modela.}
     \label{png:tretji}
 \end{figure}
 Kot zanimivost slika \ref{png:cetrti} prikazuje kaj se zgodi, 
 če matriki $X_C$ na začetek dodamo še stolpec enic.
-Nepresenetljivo glede na sliko, je Akaikejeva infromacija tega modela veliko 
-večja od prejšnih, enaka je $2330$.
-
+Nepresenetljivo, glede na sliko, je Akaikejeva infromacija tega modela veliko 
+večja od prejšnih -- enaka je $2330$.
 \begin{figure}[H]
     \centering
     \includegraphics[width=14cm]{Slike/cetrti_model.png}
-    \caption{Zelo slab model.}
+    \caption{Siva krivulja označuje izmerjene podatke, vijolična pa oceno 
+    četrtega modela.}
     \label{png:cetrti}
 \end{figure}
+
+\newpage
+
+\nocite{*}
+\printbibliography
+\addcontentsline{toc}{section}{Literatura}
+
 
 \end{document}
