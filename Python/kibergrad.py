@@ -59,7 +59,6 @@ mean = df.mean().dohodek
 means = [N.mean().dohodek, E.mean().dohodek, S.mean().dohodek, W.mean().dohodek]
 variances = [N.var().dohodek, E.var().dohodek, S.var().dohodek, W.var().dohodek]
 
-
 varB = 0
 varW = 0
 for i in range(4):
@@ -71,9 +70,5 @@ varB = round(varB)
 odklonB = varB ** (1/2)
 varW = round(varW)
 
-
 print(f'Pojasnjena varianca je {varB}.\nNepojasnjena varianca je {varW}.')
 print(f'Pojasnjeni stadardni odklon je {round(odklonB)}.')
-
-#for i in range(4):
-#    print(round(means[i]))

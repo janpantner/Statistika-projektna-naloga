@@ -80,9 +80,9 @@ print(f'(d) Testna statistika na podlagi razmerja verjetij je enaka {statistika_
 
 samples = 10000
 count = 0
-#for _ in range(samples):
-#    sample = np.random.binomial(5, a, size=n)
-#    if statistic(sample) > statistika_izmerjenih_podatkov:
-#        count += 1
+for _ in range(samples):
+    sample = np.random.binomial(5, a, size=n)
+    if statistic(sample) > statistika_izmerjenih_podatkov:
+        count += 1
 
 print(f'(d): Med {samples} simuliranimi vrednostmi preizkusne statistike pri ničelni domnevi, jih {count} preseže vrednost {statistika_izmerjenih_podatkov}.')
