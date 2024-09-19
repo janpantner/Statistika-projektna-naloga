@@ -25,9 +25,9 @@ ki živijo v eni od štirih četrti: v severni četrti stanuje $10.149$ družin,
 vzhodni $10.390$, v južni $13.457$ in v zahodni $9.890$. Pomagamo si 
 s programom \texttt{kibergrad.py}.
 
-Iz vsake četrti vzemimo enostavni slučajni vzorec velikosti $100$. 
+Iz vsake četrti vzamemo enostavni slučajni vzorec velikosti $100$. 
 Dohodke primerjamo s pomočjo škatel z brki, o katerih je več 
-napisano v \cite[Poglavje~10.6]{rice2007mathematical}.
+napisano v \cite[poglavje~10.6]{rice2007mathematical}.
 Vzporedne škatle z brki so prikazane na sliki \ref{img:cetrti}.
 \begin{figure}[H]
     \centering
@@ -35,7 +35,7 @@ Vzporedne škatle z brki so prikazane na sliki \ref{img:cetrti}.
     \caption{Škatle z brki za dohodke posamezne četrti.}
     \label{img:cetrti}
 \end{figure}
-Najprej opazimo, da je v severni četrti osamelec, ki močna izstopa. Prav tako so maksimum, tretji 
+Najprej opazimo, da je v severni četrti osamelec, ki močno izstopa. Prav tako so maksimum, tretji 
 kvartil in mediana v severni četrti največji, vendar razlika ni dovolj velika, 
 da bi lahko pri tako majhnem vzorcu sklepali, da so dohodki severne četrti 
 najvišji. Zdi pa se, da so dohodki severne četrti malenkost višji kot dohodki 
@@ -43,8 +43,8 @@ južne četrti, pri kateri so vse prej omenjene vrednosti najmanjše.
 
 Zdi se, da v splošnem četrt ne vpliva močno na velikost dohodka.
 
-Sedaj vzemimo še štiri enostavne slučajne vzorce velikosti $100$ 
-iz severne četrti in poglejmo vzporedne škatle z brki za vzorce
+Sedaj vzamemo še štiri enostavne slučajne vzorce velikosti $100$ 
+iz severne četrti in pogledamo vzporedne škatle z brki za vzorce
 iz severne četrti. Prikazane so na sliki \ref{img:sever}.
 \begin{figure}[H]
     \centering
@@ -59,10 +59,10 @@ dohodkov višjih od $33.000$.
 V novih vzorcih ne opazimo tako ekstremnih osamelcev kot pri prvem vzorcu. Večina 
 osamelcev ni zelo oddaljenih od maksimuma.
 
-Za konec si poglejmo še varianco dohodka pojasnjeno s četrtmi in preostalo
+Za konec si pogledamo še varianco dohodka, pojasnjeno s četrtmi in preostalo
 (rezidualno) varianco. Naj bo $N$ velikost populacije, $N_i$ velikost 
 populacije $i$-te četrti in $w_i$ velikostni delež $i$-te četrti. Naj bo
-$\mu$ povprečni dogodek in $\sigma^2$ varianca dohodka Kibergrada,
+$\mu$ povprečni dohodek in $\sigma^2$ varianca dohodka Kibergrada,
 $\mu_i$ in $\sigma_i^2$ pa zaporedoma povprečni dohodek in varianca 
 dohodka $i$-te četrti. 
 Pojma pojasnjene in nepojasnjene variance sta razložena v 
@@ -78,11 +78,10 @@ Izračunamo, da je
     \quad \text{in} \quad
     \sigma^2_W = 1.017.226.451.
 \]
-S četrti pojasnjeni 
-standardni odklon je torej $3.042$. Povprečni dohodki četrti, 
-so enaki $45.759$, $41.235$, $37.473$ in $42.158$, torej je 
-standardni odklon v primerjavi z njimi majhen. To se ujema z 
-opažanjem, da četrt ne vpliva močno na velikost dohodka.
+S četrtmi pojasnjen standardni odklon je torej $3.042$. 
+Povprečni dohodki četrti so enaki $45.759$, $41.235$, $37.473$ 
+in $42.158$, torej je standardni odklon v primerjavi z njimi majhen. 
+To se ujema z opažanjem, da četrt ne vpliva močno na velikost dohodka.
 \newpage
 
 \section{Lomljivost najlonskih palic}
@@ -99,9 +98,9 @@ si pomagamo s programom $\texttt{najlonske\_palice.py}$.
     \caption{Rezultati preizkusa lomljivosti.}
     \label{table:lomljivost}
 \end{table}
-Privzemimo, da je število mest, na katerih se je palica 
-zlomila porazdeljeno binomsko $\Bin(5, p)$ za določen neznan $p$.
-Privzemimo tudi, da so palice med seboj neodvisne.
+Privzamemo, da je število mest, na katerih se je palica 
+zlomila, porazdeljeno binomsko $\Bin(5, p)$ za neznan parameter $p$.
+Privzamemo tudi, da so palice med seboj neodvisne.
 
 %-----------------------  Naloga (a) -----------------------%
 
@@ -116,15 +115,15 @@ nam predstavlja oceno $p$ po metodi največjega verjetja.
 %-----------------------  Naloga (b) -----------------------%
 
 Sedaj združimo zadnje tri vrednosti in preizkusimo ničelno domnevo, da 
-je število mest, na katerih se je palica zlomila porazdeljeno 
-binomsko $\Bin(5, p)$ proti alternativni domeni, da ima število 
+je število mest, na katerih se je palica zlomila, porazdeljeno 
+binomsko $\Bin(5, p)$, proti alternativni domneni, da ima število 
 lomov katero drugo porazdelitev.
 To storimo s Pearsonovim preizkusom hi kvadrat, ki je podrobneje
-opisan v \cite[Poglavje~9.5]{rice2007mathematical}.
+opisan v \cite[poglavje~9.5]{rice2007mathematical}.
 
 Pearsonova testna statistika je
 \[
-    X^2 = \sum_{i=0}^{2}\frac{(x_i - nf_i(\hat p))^2}{nf_i(\hat p)},
+    \chi^2 = \sum_{i=0}^{2}\frac{(x_i - nf_i(\hat p))^2}{nf_i(\hat p)},
 \]
 kjer je $x_0 = 157$, $x_1 = 69$, $x_2 = 35$, $x_3 = 19$ in
 \[
@@ -133,49 +132,57 @@ kjer je $x_0 = 157$, $x_1 = 69$, $x_2 = 35$, $x_3 = 19$ in
         \sum_{j=3}^{5} \binom{5}{x_j}\hat p^{x_j}(1-\hat p)^{5-x_j}, &i = 3 
     \end{cases}.
 \]
-Izračunamo, da je $X^2 > 44$. Iz tabela kvantilov porazdelitve 
-hi kvadrat sledi, da ničelno domnevo zavrnemo tako 
+Izračunamo, da je $\chi^2 > 44$. Iz tabele kvantilov porazdelitve 
+sledi, da ničelno domnevo zavrnemo tako 
 pri stopnji tveganja $\alpha = 0{,}01$ kot tudi pri $\alpha = 0{,}05$. 
 
 %-----------------------  Naloga (c) -----------------------%
 
 Recimo sedaj, da imamo za $i = 1, \dots, 280$ neodvisna opažanja
 $X_i \sim \Bin(m_i, p_i)$, kjer so parametri $m_i$ znani, 
-$p_i$ pa neznani. S pomočjo razmerja verjetih preizkusimo 
+$p_i$ pa neznani. Smiselno predpostavimo, da so vsi 
+parametri $m_i$ vsaj $5$. S pomočjo razmerja verjetij preizkusimo 
 ničelno domnevo, da so vsi parametri $p_i$ enaki, proti 
 alternativni domnevi, da temu ni tako.
 
-Verjetja sta enaka
+Verjetji sta enaka
 \begin{align*}
-    L_1 = \prod_{i=1}^{280} \binom{m_i}{x_i}p_i^{x_i}(1-p_i)^{m_i-x_i} \\
-    L_0 = \prod_{i=1}^{280} \binom{m_i}{x_i}p_0^{x_i}(1-p_0)^{m_i-x_i}   
+    L_1 = \prod_{i=1}^{280} \binom{m_i}{x_i}p_i^{x_i}(1-p_i)^{m_i-x_i}, \\
+    L_0 = \prod_{i=1}^{280} \binom{m_i}{x_i}p_0^{x_i}(1-p_0)^{m_i-x_i}.  
 \end{align*}
-Torej je razmerje verjetij enako
+Če logaritem verjetja $L_1$ odvajamo po $p_i$, dobimo
 \[
-    \Lambda =
-    \frac{\prod_{i=1}^{280} \hat p_i^{x_i}(1-\hat p_i)^{m_i-x_i}}
-    {\prod_{i=1}^{280} \hat p_0^{x_i}(1-\hat p_0)^{m_i-x_i}}
+    \frac{x_i}{p_i} + \frac{x_i-m_i}{1-p_i}.
 \]
-Če logaritem verjetja $L_1$ odvajamo po $p_i$ 
-dobimo
+Odtod sledi, da je $\hat p_i = \frac{x_i}{m_i}$. Če je $x_i \in 
+\set{0, m_i}$, tedaj vzamemo, da je tisti faktor verjetja enak $1$.
+V primeru $L_0$ pa lahko numerično izračunamo maksimum verjetja in 
+dobimo $\hat p_0$.
+
+Na danih podatkih dobimo
 \[
-    \frac{x_i}{p_i} - \frac{x_i-m_i}{1-p_i}.
+    \Lambda = \log\frac{\prod_{i=158}^{279} \binom{m_i}{x_i}p_i^{x_i}(1-p_i)^{m_i-x_i}}
+    {\prod_{i=1}^{280} \binom{m_i}{x_i}p_0^{x_i}(1-p_0)^{m_i-x_i}}
+    = 444{,}489.
 \]
-
-
-\boxed{\texttt{TO DO}}
-
+Wilksovega izreka tukaj ne moremo uporabiti, saj zahteva, da 
+so ocenjeni parametri v notranjosti parametričnega prostora,
+mi pa imamo tudi primere, ko je $p_i = 0$ ali pa $p_j = 1$. 
+Namesto tega uporabimo metodo \textit{bootstrap}.
+Med $10.000$ simuliranimi vrednostmi preizkusne statistike pri 
+ničelni domnevi jih $0$ preseže vrednost $444{,}489$, torej 
+lahko ničelno domnevo ponovno zavrnemo.
 
 \newpage
 
 \section{Spreminjanje temperature v Ljubljani}
 
-V tem razdelku preučujemo spreminanje temperature v Ljubljani s 
-pomočjo podatkov izmerjenih mesečno v letih od $1994$ do $2023$.
+Preučujemo spreminjanje temperature v Ljubljani s 
+pomočjo podatkov, izmerjenih mesečno v letih od $1994$ do $2023$.
 Pomagamo si s programom \texttt{temperature.py}.
 
-Najprej predpostavimo linearni trend in sinusno nihanje s periodo eno leto. 
-To nam da model
+Najprej predpostavimo linearni trend in sinusno nihanje s periodo 
+enega leto. To nam da model
 \[
     y_{l,m} = Ax_l + B\sin(x_m\pi/6 + \delta) + C
 \]
@@ -186,7 +193,7 @@ oziroma
 kjer je $x_l$ leto meritve, $x_m$ mesec meritve, $y_{l,m}$ pa 
 izmerjena temperatura v tem mesecu tega leta. Več o sinusnem 
 modelu v \cite{wiki:Sinusoidal_model}. Alternativno je model 
-dolečen z
+določen z
 \[
     Y = X_A\beta_A,
 \]
@@ -207,7 +214,7 @@ kjer je $\beta_A^\top = \begin{bmatrix}
         1 & 30 & \sin\left(11\pi/6\right) & \cos\left(11\pi/6\right)\\
         \end{bmatrix}.
 \]
-Torej, $X_A$ je matrika velikosti $360 \times 4$. Predpostavimo, da je 
+Torej je $X_A$ matrika velikosti $360 \times 4$. Predpostavimo, da je 
 naš model Gaussov. Tedaj je ocena za $\beta_A$ po metodi največjega 
 verjetja enaka
 \[
@@ -219,8 +226,8 @@ Izračunamo
         10.747 & 0.056 & 0.039 & -10.379
     \end{bmatrix}.
 \]
-Prva komponenta nam pove, da imamo pozitiven trend, kar se zdi 
-smiselno. Kako dober je model lahko ocenimo s pomočjo slike 
+Prva komponenta nam pove, da imamo pozitiven trend, kar se sklada 
+s teorijo globalnega segrevanja. Kako dober je model, lahko ocenimo s pomočjo slike 
 \ref{png:prvi}.
 \begin{figure}[H]
     \centering
@@ -255,8 +262,7 @@ ki je velikosti $360 \times 13$. Izračunamo
     \end{bmatrix}.
 \]
 \normalsize
-Za model očitno ni preveč dober. To lahko vidimo tudi na sliki 
-\ref{png:drugi}.
+Na sliki \ref{png:drugi} vidimo, da ta model očitno ni preveč dober.
 \begin{figure}[H]
     \centering
     \includegraphics[width=14cm]{Slike/drugi_model.png}
@@ -286,13 +292,13 @@ To je ponovno matrika velikosti $360 \times 13$. V tem primeru je
     \beta_A^\top = \begin{bmatrix}
         0.06 & 0.26 & 2.14 & 6.30 & 10.68 & 15.29 & 
         19.56 & 21.21 & 20.48 & 15.44 & 10.88 & 5.82 & 0.92
-    \end{bmatrix}
+    \end{bmatrix}.
 \]
 \normalsize
 Prva komponenta nam pove, da imamo pozitiven linearen trend, 
-iz ostalih komponent pa je lepo razvidno kako se temperature
-spreminjajo skozi mesece. Res na primer vidimo, da model 
-predvide najnižje temperature pozimi in najvišje poleti.
+iz ostalih komponent, pa je lepo razvidno kako se temperature
+spreminjajo skozi mesece. Vidimo na primer, da model 
+predvidi najnižje temperature pozimi in najvišje poleti.
 Model je prikazan na sliki \ref{png:tretji}.
 \begin{figure}[H]
     \centering
@@ -302,7 +308,7 @@ Model je prikazan na sliki \ref{png:tretji}.
     \label{png:tretji}
 \end{figure}
 Tretji model je širši od prvega. Preizkusimo model $A$ znotraj 
-modela $C$, torej preizkusimo ničelne domnevo, da velja model $A$, 
+modela $C$, torej preizkusimo ničelno domnevo, da velja model $A$, 
 proti alternativni, da velja model $B$ z odvzetim podmodelom $A$.
 To lahko storimo na podlagi statistike
 \[
@@ -325,9 +331,9 @@ V našem primeru je $p = 13$ in $q = 4$. Izračunamo
 Ničelne domneve torej ne moremo zavrniti.
 % F = (RSS_A - RSS_C) * (n-p) / (p-q) / RSS_C
 
-\subsection*{Določanje optimalnega modela s Akaikejevo informacijo}
+\subsection*{Določanje optimalnega modela z Akaikejevo informacijo}
 
-Pri izbiri boljšega modela si lahko pomagamo z Akaikejevo informacija, 
+Pri izbiri boljšega modela si lahko pomagamo z Akaikejevo informacijo, 
 ki je v primeru linearne regresije in Gaussovega modela enaka
 \[
     \AIC := 2p + n \ln \RSS,
@@ -339,13 +345,13 @@ tretjega pa $1265$. Torej ima model $A$ malenkost
 manjšo Akaikejevo informacijo in je primernejši.
 
 Akaikejeva infromacija drugega modela je enaka $1577$. 
-To se sklada z opažanjem iz slike, da je drugi model bistveno
+To se sklada z opažanjem s slike, da je drugi model bistveno
 slabši od prvega (in tretjega).
 
-Kot zanimivost slika \ref{png:cetrti} prikazuje kaj se zgodi, 
-če matriki $X_C$ na začetek dodamo še stolpec enic.
-Nepresenetljivo, glede na sliko, je Akaikejeva infromacija tega modela veliko 
-večja od prejšnih -- enaka je $2330$.
+Kot zanimivost, slika \ref{png:cetrti} prikazuje, kaj se zgodi, 
+če matriki $X_C$ na začetek dodamo stolpec enic.
+Glede na sliko ni presenetljivo, da je Akaikejeva informacija tega modela veliko 
+večja od prejšnjih -- enaka je $2330$.
 \begin{figure}[H]
     \centering
     \includegraphics[width=14cm]{Slike/cetrti_model.png}
@@ -360,7 +366,7 @@ večja od prejšnih -- enaka je $2330$.
 \printbibliography
 \addcontentsline{toc}{section}{Literatura}
 
-Kvantili Fisherjeve porazdelitve so bili izračunani s kalkulatorjem Stat Trek
+Kvantili Fisherjeve porazdelitve so bili izračunani s kalkulatorjem Stat Trek,
 dostopnim na \url{https://stattrek.com/online-calculator/f-distribution}.
 
 
