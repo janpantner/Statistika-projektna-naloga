@@ -68,7 +68,7 @@ dohodka $i$-te četrti.
 Pojma pojasnjene in nepojasnjene variance sta razložena v 
 \cite{raic}. Zaporedoma sta določena s formulama
 \[
-    \sigma^2_B := \sum_{i=1}^{4} w_i(\mu_i - \mu)
+    \sigma^2_B := \sum_{i=1}^{4} w_i(\mu_i - \mu)^2
     \quad \text{in} \quad
     \sigma^2_W := \sum_{i=1}^{4} w_i\sigma_i^2.
 \]
@@ -78,9 +78,7 @@ Izračunamo, da je
     \quad \text{in} \quad
     \sigma^2_W = 1.017.226.451.
 \]
-S četrtmi pojasnjen standardni odklon je torej $3.042$. 
-Povprečni dohodki četrti so enaki $45.759$, $41.235$, $37.473$ 
-in $42.158$, torej je standardni odklon v primerjavi z njimi majhen. 
+Pojasnjena varianca je velikokrat manjša od nepojasnjene.
 To se ujema z opažanjem, da četrt ne vpliva močno na velikost dohodka.
 \newpage
 
@@ -123,7 +121,7 @@ opisan v \cite[poglavje~9.5]{rice2007mathematical}.
 
 Pearsonova testna statistika je
 \[
-    \chi^2 = \sum_{i=0}^{2}\frac{(x_i - nf_i(\hat p))^2}{nf_i(\hat p)},
+    X^2 = \sum_{i=0}^{2}\frac{(x_i - nf_i(\hat p))^2}{nf_i(\hat p)},
 \]
 kjer je $x_0 = 157$, $x_1 = 69$, $x_2 = 35$, $x_3 = 19$ in
 \[
@@ -132,7 +130,7 @@ kjer je $x_0 = 157$, $x_1 = 69$, $x_2 = 35$, $x_3 = 19$ in
         \sum_{j=3}^{5} \binom{5}{x_j}\hat p^{x_j}(1-\hat p)^{5-x_j}, &i = 3 
     \end{cases}.
 \]
-Izračunamo, da je $\chi^2 > 44$. Iz tabele kvantilov porazdelitve 
+Izračunamo, da je $X^2 > 44$. Iz tabele kvantilov porazdelitve 
 sledi, da ničelno domnevo zavrnemo tako 
 pri stopnji tveganja $\alpha = 0{,}01$ kot tudi pri $\alpha = 0{,}05$. 
 
@@ -161,13 +159,12 @@ dobimo $\hat p_0$.
 
 Na danih podatkih dobimo
 \[
-    \Lambda = \log\frac{\prod_{i=158}^{279} \binom{m_i}{x_i}p_i^{x_i}(1-p_i)^{m_i-x_i}}
+    2\log\Lambda = 2\log\frac{\prod_{i=158}^{279} \binom{m_i}{x_i}p_i^{x_i}(1-p_i)^{m_i-x_i}}
     {\prod_{i=1}^{280} \binom{m_i}{x_i}p_0^{x_i}(1-p_0)^{m_i-x_i}}
     = 444{,}489.
 \]
 Wilksovega izreka tukaj ne moremo uporabiti, saj zahteva, da 
-so ocenjeni parametri v notranjosti parametričnega prostora,
-mi pa imamo tudi primere, ko je $p_i = 0$ ali pa $p_j = 1$. 
+so spremenljivke enako porazdeljene.
 Namesto tega uporabimo metodo \textit{bootstrap}.
 Med $10.000$ simuliranimi vrednostmi preizkusne statistike pri 
 ničelni domnevi jih $0$ preseže vrednost $444{,}489$, torej 
@@ -218,7 +215,7 @@ Torej je $X_A$ matrika velikosti $360 \times 4$. Predpostavimo, da je
 naš model Gaussov. Tedaj je ocena za $\beta_A$ po metodi največjega 
 verjetja enaka
 \[
-    \hat \beta_A = (X_A^\top X)^{-1} X^\top Y.
+    \hat \beta_A = (X_A^\top X_A)^{-1} X_A^\top Y.
 \]
 Izračunamo
 \[
@@ -236,44 +233,10 @@ s teorijo globalnega segrevanja. Kako dober je model, lahko ocenimo s pomočjo s
     prvega modela.}
     \label{png:prvi}
 \end{figure}
-Alternativno predpostavimo linearni trend temperature za 
-vsak mesec v letu posebej. V tem primeru dobimo matriko
+Alternativno predpostavimo linearni trend in spreminjanje temperature za vsak mesec
+v letu posebej, torej
 \[
     X_B = \begin{bmatrix}
-        1 & 1 & 0 & 0 & \cdots & 0 & 0 \\
-        1 & 0 & 1 & 0 & \cdots & 0 & 0 \\
-        \vdots & & & & \ddots & & & \\
-        1 & 0 & 0 & 0 & \cdots & 0 & 1 \\
-        1 & 2 & 0 & 0 & \cdots & 0 & 0 \\
-        \vdots & & & & \ddots & & & \\
-        1 & 0 & 0 & 0 & \cdots & 0 & 2 \\
-        1 & 3 & 0 & 0 & \cdots & 0 & 0 \\
-        \vdots & & & & \ddots & & & \\
-        1 & 0 & 0 & 0 & \cdots & 0 & 30 
-    \end{bmatrix},
-\]
-ki je velikosti $360 \times 13$. Izračunamo
-\setcounter{MaxMatrixCols}{20}
-\footnotesize
-\[
-    \beta_A^\top = \begin{bmatrix}
-        10.75 & -0.46 & -0.37 & -0.17 & 0.05 & 0.26 & 
-        0.50 & 0.58 & 0.54 & 0.29 & 0.06 & -0.19 & -0.42
-    \end{bmatrix}.
-\]
-\normalsize
-Na sliki \ref{png:drugi} vidimo, da ta model očitno ni preveč dober.
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=14cm]{Slike/drugi_model.png}
-    \caption{Siva krivulja označuje izmerjene podatke, rdeča pa oceno 
-    drugega modela.}
-    \label{png:drugi}
-\end{figure}
-Takšna razlika se verjetno pojavi zaradi avtorjeve napačne interpretacije navodil 
-projektne naloge. Verjetno je mišljeno, da je drugi model določen z matriko
-\[
-    X_C = \begin{bmatrix}
         1 & 1 & 0 & 0 & \cdots & 0 & 0 \\
         1 & 0 & 1 & 0 & \cdots & 0 & 0 \\
         \vdots & & & & \ddots & & & \\
@@ -283,13 +246,14 @@ projektne naloge. Verjetno je mišljeno, da je drugi model določen z matriko
         2 & 0 & 0 & 0 & \cdots & 0 & 1 \\
         3 & 1 & 0 & 0 & \cdots & 0 & 0 \\
         \vdots & & & & \ddots & & & \\
-        30 & 1 & 0 & 0 & \cdots & 0 & 1 
+        30 & 0 & 0 & 0 & \cdots & 0 & 1 
     \end{bmatrix}.
 \]
 To je ponovno matrika velikosti $360 \times 13$. V tem primeru je
 \footnotesize
+\setcounter{MaxMatrixCols}{20}
 \[
-    \beta_A^\top = \begin{bmatrix}
+    \beta_B^\top = \begin{bmatrix}
         0.06 & 0.26 & 2.14 & 6.30 & 10.68 & 15.29 & 
         19.56 & 21.21 & 20.48 & 15.44 & 10.88 & 5.82 & 0.92
     \end{bmatrix}.
@@ -299,22 +263,22 @@ Prva komponenta nam pove, da imamo pozitiven linearen trend,
 iz ostalih komponent, pa je lepo razvidno kako se temperature
 spreminjajo skozi mesece. Vidimo na primer, da model 
 predvidi najnižje temperature pozimi in najvišje poleti.
-Model je prikazan na sliki \ref{png:tretji}.
+Model je prikazan na sliki \ref{png:drugi}.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=14cm]{Slike/tretji_model.png}
+    \includegraphics[width=14cm]{Slike/drugi_model.png}
     \caption{Siva krivulja označuje izmerjene podatke, modra pa oceno 
     tretjega modela.}
-    \label{png:tretji}
+    \label{png:drugi}
 \end{figure}
 Tretji model je širši od prvega. Preizkusimo model $A$ znotraj 
-modela $C$, torej preizkusimo ničelno domnevo, da velja model $A$, 
+modela $B$, torej preizkusimo ničelno domnevo, da velja model $A$, 
 proti alternativni, da velja model $B$ z odvzetim podmodelom $A$.
 To lahko storimo na podlagi statistike
 \[
-    F := \frac{(\RSS_A - \RSS_C)(n-p)}{\RSS_C (p-q)},
+    F := \frac{(\RSS_A - \RSS_B)(n-p)}{\RSS_B (p-q)},
 \]
-kjer sta $p$ in $q$ prostorski stopnji modelov $C$ in $A$. 
+kjer sta $p$ in $q$ prostorski stopnji modelov $B$ in $A$. 
 Ničelno domnevo zavrnemo, če je 
 \[
     F \ge F^{-1}_{\fish(p-q,n-p)}(1-\alpha),
@@ -329,7 +293,6 @@ V našem primeru je $p = 13$ in $q = 4$. Izračunamo
     F^{-1}_{\fish(9,347)}(1-0{,}01) = 2{,}459.
 \]
 Ničelne domneve torej ne moremo zavrniti.
-% F = (RSS_A - RSS_C) * (n-p) / (p-q) / RSS_C
 
 \subsection*{Določanje optimalnega modela z Akaikejevo informacijo}
 
@@ -341,24 +304,8 @@ ki je v primeru linearne regresije in Gaussovega modela enaka
 kjer je $p$ število parametrov, $n$ število opažanj in $\RSS = \norm{Y - X\hat \beta}$.
 
 Akaikejeva informacija prvega modela je enaka $1261$,
-tretjega pa $1265$. Torej ima model $A$ malenkost
+drugega pa $1265$. Torej ima model $A$ malenkost
 manjšo Akaikejevo informacijo in je primernejši.
-
-Akaikejeva infromacija drugega modela je enaka $1577$. 
-To se sklada z opažanjem s slike, da je drugi model bistveno
-slabši od prvega (in tretjega).
-
-Kot zanimivost, slika \ref{png:cetrti} prikazuje, kaj se zgodi, 
-če matriki $X_C$ na začetek dodamo stolpec enic.
-Glede na sliko ni presenetljivo, da je Akaikejeva informacija tega modela veliko 
-večja od prejšnjih -- enaka je $2330$.
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=14cm]{Slike/cetrti_model.png}
-    \caption{Siva krivulja označuje izmerjene podatke, vijolična pa oceno 
-    četrtega modela.}
-    \label{png:cetrti}
-\end{figure}
 
 \newpage
 

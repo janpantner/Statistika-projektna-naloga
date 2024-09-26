@@ -39,24 +39,24 @@ plt.tight_layout()
 plt.savefig("Latex\\Slike\\prvi_model.png")
 plt.clf()
 
-
 #-----------------------  Model (b) -----------------------#
 
 diag = np.diag(np.full(12,1)) 
 for i in range(2, 31):
-    diag = np.concatenate((diag, np.diag(np.full(12,i))), axis=0) 
+    diag = np.concatenate((diag, np.diag(np.full(12,1))), axis=0)
 
-X_B = np.concatenate((np.ones((n, 1)), diag), axis = 1)
+#X_C = np.concatenate((np.arange(n).reshape([n, 1]), diag), axis = 1)
+X_B = np.concatenate((months, diag), axis = 1)
 
 beta_B = np.matmul(np.matmul(np.linalg.inv(np.matmul(X_B.T, X_B)), X_B.T), Y)
 
 RSS_B = np.linalg.norm(Y - np.dot(X_B, beta_B))
-
 AIC_B = round(2*13 + n*np.log(RSS_B))
 
 f.set_figwidth(8)
 f.set_figheight(3)
-plt.plot(np.matmul(X_B, beta_B)[300:], linewidth=1.5, color="red")
+
+plt.plot(np.matmul(X_B, beta_B)[300:], linewidth=1.5, color="blue")
 plt.plot(Y[300:], linewidth=1.5, color="gray")
 plt.xlabel("Meseci, začenši z januarjem 2019")
 plt.ylabel("Temperatura [°C]")
@@ -64,63 +64,16 @@ plt.tight_layout()
 plt.savefig("Latex\\Slike\\drugi_model.png")
 plt.clf()
 
-#-----------------------  Model (c) -----------------------#
+#----------------------------------------------------------#
 
-diag = np.diag(np.full(12,1)) 
-for i in range(2, 31):
-    diag = np.concatenate((diag, np.diag(np.full(12,1))), axis=0)
-
-#X_C = np.concatenate((np.arange(n).reshape([n, 1]), diag), axis = 1)
-X_C = np.concatenate((months, diag), axis = 1)
-
-beta_C = np.matmul(np.matmul(np.linalg.inv(np.matmul(X_C.T, X_C)), X_C.T), Y)
-
-RSS_C = np.linalg.norm(Y - np.dot(X_C, beta_C))
-AIC_C = round(2*13 + n*np.log(RSS_C))
-
-f.set_figwidth(8)
-f.set_figheight(3)
-plt.plot(np.matmul(X_C, beta_C)[300:], linewidth=1.5, color="blue")
-plt.plot(Y[300:], linewidth=1.5, color="gray")
-plt.xlabel("Meseci, začenši z januarjem 2019")
-plt.ylabel("Temperatura [°C]")
-plt.tight_layout()
-plt.savefig("Latex\\Slike\\tretji_model.png")
-plt.clf()
-
-#-----------------------  Model (d) -----------------------#
-
-diag = np.diag(np.full(12,1)) 
-for i in range(2, 31):
-    diag = np.concatenate((diag, np.diag(np.full(12,1))), axis=0)
-
-X_D = np.concatenate((np.ones((n, 1)), np.arange(n).reshape([n, 1]), diag), axis = 1)
-
-beta_D = np.matmul(np.matmul(np.linalg.inv(np.matmul(X_D.T, X_D)), X_D.T), Y)
-
-RSS_D = np.linalg.norm(Y - np.dot(X_D, beta_D))
-AIC_D = round(2*14 + n*np.log(RSS_D))
-
-f.set_figwidth(8)
-f.set_figheight(3)
-plt.plot(np.matmul(X_D, beta_D)[300:], linewidth=1.5, color="purple")
-plt.plot(Y[300:], linewidth=1.5, color="gray")
-plt.xlabel("Meseci, začenši z januarjem 2019")
-plt.ylabel("Temperatura [°C]")
-plt.tight_layout()
-plt.savefig("Latex\\Slike\\cetrti_model.png")
-#plt.clf()
+print(f'Akaikejevi informaciji sta zaporedoma {AIC_A} in {AIC_B}.')
 
 #----------------------------------------------------------#
 
-print(f'Akaikejeve informacije so zaporedoma {AIC_A}, {AIC_B}, {AIC_C} in {AIC_D}.')
-
-#----------------------------------------------------------#
-
-p = 13 # dim V -- C
+p = 13 # dim V -- B
 q = 4 # dim W -- A
 
-F = (RSS_A - RSS_C) * (n-p) / (p-q) / RSS_C
+F = (RSS_A - RSS_B) * (n-p) / (p-q) / RSS_B
 
 print(f'Testna statistika F je enaka {round(F, 3)}.')
 # fisher(p-q, n-p) = fisher(9, 356)
