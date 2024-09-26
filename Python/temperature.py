@@ -13,15 +13,13 @@ Y = Y.reshape([n, 1])
 #-----------------------  Model (a) -----------------------#
 
 ones = np.ones((12, 1))
-months = ones
 sin = np.sin(math.pi * np.arange(12) / 6).reshape([12, 1])
 cos = np.cos(math.pi * np.arange(12) / 6).reshape([12, 1])
 for i in range(2, 31):
-    months = np.concatenate((months, i*ones))
     sin = np.concatenate((sin, np.sin(math.pi * np.arange(12) / 6).reshape([12, 1])))
     cos = np.concatenate((cos, np.cos(math.pi * np.arange(12) / 6).reshape([12, 1])))
 
-X_A = np.concatenate((np.ones((n, 1)), months, sin, cos), axis=1)
+X_A = np.concatenate((np.ones((n, 1)), np.arange(n).reshape([n, 1]), sin, cos), axis=1)
 
 beta_A = np.matmul(np.matmul(np.linalg.inv(np.matmul(X_A.T, X_A)), X_A.T), Y)
 
@@ -45,8 +43,7 @@ diag = np.diag(np.full(12,1))
 for i in range(2, 31):
     diag = np.concatenate((diag, np.diag(np.full(12,1))), axis=0)
 
-#X_C = np.concatenate((np.arange(n).reshape([n, 1]), diag), axis = 1)
-X_B = np.concatenate((months, diag), axis = 1)
+X_B = np.concatenate((np.arange(n).reshape([n, 1]), diag), axis = 1)
 
 beta_B = np.matmul(np.matmul(np.linalg.inv(np.matmul(X_B.T, X_B)), X_B.T), Y)
 
@@ -76,4 +73,3 @@ q = 4 # dim W -- A
 F = (RSS_A - RSS_B) * (n-p) / (p-q) / RSS_B
 
 print(f'Testna statistika F je enaka {round(F, 3)}.')
-# fisher(p-q, n-p) = fisher(9, 356)
